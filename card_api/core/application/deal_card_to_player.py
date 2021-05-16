@@ -25,7 +25,6 @@ def deal_card_to_player(
     player = player.draw_card(card_dealt)
     player_repo.save(player)
     deck_repo.save(current_deck)
-    print(len(current_deck.cards))
     if len(current_deck.cards) == 0:
         game_decks_modified = [] + game_decks
         game_decks_modified.remove(current_deck_id)

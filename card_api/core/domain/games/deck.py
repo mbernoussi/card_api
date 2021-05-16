@@ -32,12 +32,6 @@ class Deck:
         self.cards = cards
         return card
 
-    def remove_card(self, card):
-        deck_cards = [] + self.cards
-        deck_cards.remove(card.__dict__)
-        self.cards = deck_cards
-        return self
-
     @classmethod
     def new(
         cls,

@@ -32,6 +32,3 @@ class DeckCalculatorService(_a_game.DeckCalculator):
         undealt_cards_by_suit["HEART"] = heart_sum
         undealt_cards_by_suit["CLUB"] = club_sum
         return undealt_cards_by_suit
-
-    # @_antidote.inject
-    # def count_undealt_cards(self, game_deck, deck_repo: _r_deck.DecksRepository) -> dict:
