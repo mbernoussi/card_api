@@ -37,4 +37,8 @@ COPY --from=builder --chown=${USERNAME}:${USERNAME} /home/${USERNAME} /home/${US
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}/${APP_DIR}
 
+#ENTRYPOINT ["sleep"]
+
+#CMD ["1000000"]
+
 ENTRYPOINT ["./entrypoint.sh"]
