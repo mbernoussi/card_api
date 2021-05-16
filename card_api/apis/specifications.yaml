@@ -1,0 +1,307 @@
+# openapi/specification.yml
+openapi: "3.0.3"
+info:
+  version: "1.0.0"
+  title: "Card Game documentation"
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: "Games"
+    description: "Create and delete games"
+paths:
+  /games:
+    post:
+      tags:
+        - "Games"
+      summary: "Create a game"
+      operationId: "card_api.apis.games.endpoints.create_game"
+      responses:
+        201:
+          description: "Successfully retrived game"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+  /games/{gameId}:
+    delete:
+      tags:
+        - "Games"
+      summary: "Delete a game"
+      operationId: "card_api.apis.games.endpoints.delete_game"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: "Successfuly removed game"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        404:
+          description: "The game to delete doesn't exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+  /games/decks:
+    post:
+      tags:
+        - "Games"
+      summary: "Create a Deck"
+      operationId: "card_api.apis.games.endpoints.create_deck"
+      responses:
+        201:
+          description: "Successfully retrived game"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Deck"
+  /games/{gameId}/decks/{deckId}:
+    put:
+      tags:
+        - "Games"
+      summary: "Add a deck to a game"
+      operationId: "card_api.apis.games.endpoints.add_deck_to_game"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: deckId
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully retrived game"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        404:
+          description: "The resource or the resource to add doesn't exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+        405:
+          description: "The deck already exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+  /games/{gameId}/players/{playerAccount}:
+    post:
+      tags:
+        - "Games"
+      summary: "Add a player to a game"
+      operationId: "card_api.apis.games.endpoints.add_player_to_game"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: playerAccount
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully added player"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        404:
+          description: "The game doesn't exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+        409:
+          description: "The player is already part of the game"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+  /games/{gameId}/cards/players/{playerAccount}:
+    get:
+      tags:
+        - "Games"
+      summary: "Deal cards to player"
+      operationId: "card_api.apis.games.endpoints.deal_card_to_player"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: playerAccount
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully dealt card to player"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        404:
+          description: "The player to add wasn't found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+        405:
+          description: "The operation is not allowed because the player is not part of the game or the deck is empty"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+  /games/{gameId}/players/{playerAccount}/cards:
+    get:
+      tags:
+        - "Games"
+      summary: "Get the list of cards for a player"
+      operationId: "card_api.apis.games.endpoints.get_list_of_cards"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: playerAccount
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully retrieved list of cards for player"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Hand"
+        404:
+          description: "The game doesn't exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+        405:
+          description: "The player is not part of the game"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+  /games/{gameId}/players:
+    get:
+      tags:
+        - "Games"
+      summary: "Get the list of players in a game"
+      operationId: "card_api.apis.games.endpoints.get_list_of_players"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully retrieved list of cards for player"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Players"
+        404:
+          description: "The game doesn't exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+  /games/{gameId}/suit:
+    get:
+      tags:
+        - "Games"
+      summary: "Get the list of undealt suit per game deck"
+      operationId: "card_api.apis.games.endpoints.get_list_of_undealt_suits"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully retrieved list of cards for player"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Undealt"
+  /games/{gameId}/countcards:
+    get:
+      tags:
+        - "Games"
+      summary: "Get the list of undealt suit per game deck"
+      operationId: "card_api.apis.games.endpoints.count_undealt_cards"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully retrieved list of cards for player"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Undealt"
+        404:
+          description: "The game doesn't exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+components:
+  schemas:
+    Game:
+      type: object
+      properties:
+        gameId:
+          type: string
+          description: Game unique ID
+        deckId:
+          type: string
+          description: Game deckId
+    Deck:
+      type: object
+      properties:
+        deckId:
+          type: string
+          description: Deck unique ID
+        Cards:
+          type: array
+          description: Cards belonging to Deck
+    Hand:
+      type: array
+    Players:
+      type: array
+    Undealt:
+      type: object
+    Exception:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The exception message
