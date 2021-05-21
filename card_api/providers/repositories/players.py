@@ -1,10 +1,9 @@
 import antidote as _antidote
 import mongoengine as _me
+
 import card_api.core.application as _a_game
-import card_api.core.domain.games.deck as _d_game
 import card_api.core.domain.games.card as _d_card
 import card_api.core.domain.games.player as _d_player
-import typing as _t
 
 
 class Player(_me.Document):
@@ -16,15 +15,20 @@ class Player(_me.Document):
     def from_entity(cls, player: _d_player.Player) -> "Player":
         hand_list = []
         for card in player.hand:
-            hand_list.append({"suit": card.suit.value, "face": card.face.value})
-        return cls(_id=str(player.player_account), hand=hand_list, score=player.score)
+            hand_list.append(
+                {"suit": card.suit.value, "face": card.face.value}
+            )
+        return cls(
+            _id=str(player.player_account), hand=hand_list, score=player.score
+        )
 
     def to_entity(self) -> _d_player.Player:
         hand_list = []
         for card_dict in self.hand:
             hand_list.append(
                 _d_card.Card(
-                    _d_card.Suit(card_dict["suit"]), _d_card.Face(card_dict["face"])
+                    _d_card.Suit(card_dict["suit"]),
+                    _d_card.Face(card_dict["face"]),
                 )
             )
         player = _d_player.Player(

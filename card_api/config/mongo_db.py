@@ -1,6 +1,6 @@
 """Config for mongo db"""
-import typing as _t
 import os as _os
+import typing as _t
 
 __all__ = (
     "MONGO_DATABASE",

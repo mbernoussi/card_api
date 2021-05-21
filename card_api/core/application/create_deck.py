@@ -1,4 +1,5 @@
 import antidote as _antidote
+
 import card_api.core.application.interfaces as _interfaces
 import card_api.core.domain.games.deck as _d_deck
 

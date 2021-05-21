@@ -1,7 +1,8 @@
-test_data_count = 20
 import uuid as _uuid
 
 import card_api.core.domain.games.card as _card
+
+test_data_count = 20
 
 
 def build_entity_ids():

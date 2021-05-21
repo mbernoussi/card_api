@@ -1,5 +1,4 @@
 import random as _random
-import uuid as _uuid
 
 import pytest as _pytest
 

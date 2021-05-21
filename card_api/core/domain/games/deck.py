@@ -1,6 +1,7 @@
-import uuid as _uuid
-import card_api.core.domain.games.card as _card
 import random as _random
+import uuid as _uuid
+
+import card_api.core.domain.games.card as _card
 
 
 class Deck:

@@ -1,9 +1,7 @@
 import random as _random
-import uuid as _uuid
 
 import pytest as _pytest
 
-import card_api.core.domain.games.card as _card
 import card_api.core.domain.games.deck as _deck
 import tests.test_data as _data
 
@@ -15,7 +13,6 @@ def build_decks_data():
     deck_cards = _data.deck_cards
     for i in range(_random.randint(1, _data.test_data_count)):
         deck_id = _random.choice(_data.games_ids_list)
-        cards = deck_cards
         deck_data = (deck_id, deck_cards)
         decks_data.append(deck_data)
     return decks_data
@@ -39,7 +36,7 @@ class TestDeck:
         assert deck.id == deck_id
 
     @staticmethod
-    def test_build_deck():
+    def test_new_deck():
         deck = _deck.Deck.new()
         assert deck.id != ""
         assert isinstance(deck.id, str)

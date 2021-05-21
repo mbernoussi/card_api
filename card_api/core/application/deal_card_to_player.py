@@ -1,7 +1,8 @@
 import antidote as _antidote
+
+import card_api.common.exception as _exc
 import card_api.core.application.interfaces as _interfaces
 import card_api.core.domain.games.game as _d_game
-import card_api.common.exception as _exc
 
 
 @_antidote.inject

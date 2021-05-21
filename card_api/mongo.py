@@ -1,13 +1,13 @@
 """Module to initialize the Mongo database"""
 
-import mongoengine as _me
 import os as _os
 from pathlib import Path
-import requests
+
+import mongoengine as _me
 
 _os.sys.path.append("{0}/config".format(Path(_os.getcwd()).parent))
 
-import card_api.config.mongo_db as _conf
+import card_api.config.mongo_db as _conf  # noqa E402
 
 _me.connect(
     db=_conf.MONGO_DATABASE,

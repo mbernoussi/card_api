@@ -1,4 +1,4 @@
 import card_api.apis.app as _app
 
 app = _app.create_app()
-from card_api.mongo import *
+from card_api.mongo import *  # noqa F403
