@@ -5,3 +5,7 @@ black==21.5b1
 python-dotenv==0.17.1
 mongoengine==0.23.1
 gunicorn==20.1.0
+pytest==6.2.4
+pytest-cov==2.12.0
+isort==5.8.0
+flake8==3.9.2
