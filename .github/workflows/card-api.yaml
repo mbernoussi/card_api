@@ -69,3 +69,5 @@ jobs:
         run: |
           kubectl apply -f mongo_deployment.yaml --namespace ${{ env.GKE_NAMESPACE }}
           kubectl apply -f card_api_deployment.yaml --namespace ${{ env.GKE_NAMESPACE }}
+          kubectl apply -f card-api-service.yaml --namespace ${{ env.GKE_NAMESPACE }}
+          kubectl apply -f mongo-service.yaml --namespace ${{ env.GKE_NAMESPACE }}
