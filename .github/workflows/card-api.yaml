@@ -39,7 +39,7 @@ jobs:
           push: true
           tags: bernoussim/card_api:latest
           build-args: |
-            - BASE_IMAGE=python
-            - BASE_IMAGE_TAG=3.7.9-alpine
-            - USERNAME=carduser
-            - APP_DIR=card_game
+            BASE_IMAGE=python
+            BASE_IMAGE_TAG=3.7.9-alpine
+            USERNAME=carduser
+            APP_DIR=card_game
