@@ -39,3 +39,31 @@ class DeckCalculatorService(_a_game.DeckCalculator):
         undealt_cards_by_suit["HEART"] = heart_sum
         undealt_cards_by_suit["CLUB"] = club_sum
         return undealt_cards_by_suit
+
+    @_antidote.inject
+    def calculate_card_count(
+        self, game_deck, deck_repo: _r_deck.DecksRepository
+    ):
+        def define_unique_list(cards_list):
+            unique_list = []
+            for card in cards_list:
+                if card not in unique_list:
+                    unique_list.append(card)
+            return unique_list
+
+        cards_list = []
+        for deck_id in game_deck:
+            deck = deck_repo.find_by_id(deck_id)
+            for card in deck.cards:
+                cards_list.append(card)
+        card_count_dict = {
+            str(card): cards_list.count(card) for card in cards_list
+        }
+        unique_card_list = define_unique_list(cards_list)
+        unique_card_list_sorted = sorted(unique_card_list, reverse=True)
+        ordered_cards_list = [
+            {str(card): card_count_dict[str(card)]}
+            for card in unique_card_list_sorted
+        ]
+
+        return ordered_cards_list

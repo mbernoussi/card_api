@@ -24,7 +24,26 @@ class Suit(_enum.Enum):
     DIAMOND = "DIAMOND"
 
 
+SUIT_RANKING = [Suit.HEART, Suit.SPADE, Suit.CLUB, Suit.DIAMOND]
+
+
 class Card:
     def __init__(self, suit: Suit, face: Face):
         self.suit = suit
         self.face = face
+
+    def __eq__(self, other: "Card") -> bool:
+        return (self.face.value == other.face.value) and (
+            self.suit.value == other.suit.value
+        )
+
+    def __str__(self) -> str:
+        return "{} of {}".format(self.face.name, self.suit.value)
+
+    def __lt__(self, other: "Card"):
+        if self.face.value == other.face.value:
+            return SUIT_RANKING.index(self.suit) > SUIT_RANKING.index(
+                other.suit
+            )
+        else:
+            return self.face.value < other.face.value

@@ -43,3 +43,7 @@ class DeckCalculator(_abc.ABC):
     @_abc.abstractmethod
     def calculate_undealt(self, game: _d_game.Game):
         raise NotImplementedError
+
+    @_abc.abstractmethod
+    def calculate_card_count(self, game: _d_game.Game) -> list:
+        raise NotImplementedError

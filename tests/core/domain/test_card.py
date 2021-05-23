@@ -26,3 +26,23 @@ class TestCard:
         card = _card.Card(suit, face)
         assert card.suit == suit
         assert card.face == face
+
+    @staticmethod
+    def test_equal_cards():
+        first_card = _card.Card(_card.Suit.HEART, _card.Face.ACE)
+        second_card = _card.Card(_card.Suit.HEART, _card.Face.ACE)
+        assert first_card == second_card
+
+    @staticmethod
+    def test_card_comparison():
+        first_card = _card.Card(_card.Suit.HEART, _card.Face.ACE)
+        second_card = _card.Card(_card.Suit.SPADE, _card.Face.ACE)
+        third_card = _card.Card(_card.Suit.SPADE, _card.Face.KING)
+        assert second_card < first_card
+        assert third_card > second_card
+        assert third_card > first_card
+
+    @staticmethod
+    def test_card_string_representation():
+        card = _card.Card(_card.Suit.HEART, _card.Face.JACK)
+        assert str(card) == "JACK of HEART"

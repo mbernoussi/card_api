@@ -121,4 +121,10 @@ def get_list_of_undealt_suits(**kwargs):
 
 
 def count_undealt_cards(**kwargs):
-    pass
+    game_id = kwargs["gameId"]
+    try:
+        ordered_cards_list = _a_game.get_card_count(game_id=game_id)
+    except _exc.GameDoesNotExist as e:
+        return {"message": str(e)}, 404
+    else:
+        return ordered_cards_list
