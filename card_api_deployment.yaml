@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: card-api
+  name: card-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: card-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: card-api
+    spec:
+      containers:
+        - image: docker.io/bernoussim/card_api:latest
+          name: card-api
+          resources: {}
+          env:
+            - name: MONGO_DB_PORT
+              value: "27017"
+            - name: MONGO_DATABASE
+              value: "carddb"
+            - name: MONGO_CONTAINER_NAME
+              value: "mongo"
+            - name: CONTAINER_PORT
+              value: 8080
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials
+                  key: mongo-username
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-credentials
+                  key: mongo-password
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+status: {}
