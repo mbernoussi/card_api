@@ -67,7 +67,7 @@ jobs:
 
       - name: Deploy
         run: |
-          kubeclt apply -f mongo_deployment.yaml --namespace ${{ env.GKE_NAMESPACE }}
+          kubectl apply -f mongo_deployment.yaml --namespace ${{ env.GKE_NAMESPACE }}
           kubectl expose deployment mongo --type=NodePort --name=mongo --namespace ${{ env.GKE_NAMESPACE }}
           kubectl apply -f card_api_deployment.yaml --namespace ${{ env.GKE_NAMESPACE }}
           kubectl expose deployment card-api --name=${{ env.API_SERVICE_NAME }} --type=LoadBalancer --port ${{ env.API_EXPOSED_PORT }} --target-port ${{ env.API_PORT}} --namespace ${{ env.GKE_NAMESPACE }}
