@@ -67,7 +67,7 @@ jobs:
       - name: Deploy
         run: |
           kubectl --namespace ${{ env.GKE_NAMESPACE }} create secret generic mongo-root-credentials --from-literal=mongo-root-username=${{ secrets.MONGO_INITDB_ROOT_USERNAME}} --from-literal=mongo-root-password=${{ secrets.MONGO_INITDB_ROOT_PASSWORD}}
-          kubectl -- namespace ${{ env.GKE_NAMESPACE }} create --namespace secret generic mongo-credentials --from-literal=mongo-username=${{ secrets.MONGO_USERNAME }} --from-literal=mongo-password=${{ secrets.MONGO_PASSWORD }}
+          kubectl --namespace ${{ env.GKE_NAMESPACE }} create secret generic mongo-credentials --from-literal=mongo-username=${{ secrets.MONGO_USERNAME }} --from-literal=mongo-password=${{ secrets.MONGO_PASSWORD }}
           kubectl --namespace ${{ env.GKE_NAMESPACE }} create configmap mongo-init --from-file=i${{ env.INIT_MONGO }}
           kubeclt --namespace ${{ env.GKE_NAMESPACE }} apply -f mongo_deployment.yaml
           kubectl --namespace ${{ env.GKE_NAMESPACE }} expose deployment mongo --type=NodePort --name=mongo
