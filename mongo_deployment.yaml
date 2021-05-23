@@ -58,6 +58,6 @@ spec:
         - name: mongo-init-script-volume
           configMap:
             name: mongo-init
-            default: 0744
+            defaultMode: 0744
 
 status: {}
