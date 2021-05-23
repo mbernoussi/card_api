@@ -1,8 +1,9 @@
-import card_api.core.domain.games.game as _d_game
-import card_api.core.domain.games.deck as _d_deck
-import card_api.core.application as _a_game
 import pytest as _pytest
+
 import card_api.common.exception as _exc
+import card_api.core.application as _a_game
+import card_api.core.domain.games.deck as _d_deck
+import card_api.core.domain.games.game as _d_game
 
 
 @_pytest.fixture
