@@ -7,7 +7,7 @@ import tests.test_data as _data
 
 
 def build_games_data():
-    players_data = []
+    games_data = []
     for i in range(_random.randint(1, _data.test_data_count)):
         game_id = _random.choice(_data.games_ids_list)
         decks_list = [
@@ -19,8 +19,8 @@ def build_games_data():
             for player in range(_random.randint(1, _data.test_data_count))
         ]
         player_data = (game_id, decks_list, players_list)
-        players_data.append(player_data)
-    return players_data
+        games_data.append(player_data)
+    return games_data
 
 
 games_data = build_games_data()
