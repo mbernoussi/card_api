@@ -53,10 +53,11 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: mongo-init-script-volume
-              mountPath: /docker-entrypoint-initdb.d/init_mongo.sh
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: mongo-init-script-volume
           configMap:
-            name: mongo-init.sh
+            name: mongo-init
+            default: 0744
 
 status: {}
