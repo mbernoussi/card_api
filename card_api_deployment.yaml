@@ -29,7 +29,7 @@ spec:
             - name: MONGO_CONTAINER_NAME
               value: "mongo"
             - name: CONTAINER_PORT
-              value: 8080
+              value: "8080"
             - name: MONGO_USERNAME
               valueFrom:
                 secretKeyRef:
