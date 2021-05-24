@@ -290,17 +290,25 @@ components:
         deckId:
           type: string
           description: Deck unique ID
-        Cards:
+        cards:
           type: array
+          items:
+            type: string
           description: Cards belonging to Deck
     Hand:
       type: array
+      items:
+        type: string
     Players:
       type: array
+      items:
+        type: string
     Undealt:
       type: object
     cardCount:
       type: array
+      items:
+        type: string
     Exception:
       type: object
       properties:
