@@ -70,8 +70,8 @@ jobs:
       - name: Deploy
         run: |
           kubectl apply -f mongo_deployment.yaml --namespace ${{ env.GKE_NAMESPACE }}
-          kubectl rollout restart ${{ env.MONGO_DEPLOYMENT_NAME }} --namespace ${{ env.GKE_NAMESPACE }}
+          kubectl rollout restart deployment ${{ env.MONGO_DEPLOYMENT_NAME }} --namespace ${{ env.GKE_NAMESPACE }}
           kubectl apply -f card_api_deployment.yaml --namespace ${{ env.GKE_NAMESPACE }}
-          kubectl rollout restart ${{ env.API_DEPLOYMENT_NAME }} --namespace ${{ env.GKE_NAMESPACE }}
+          kubectl rollout restart deployment ${{ env.API_DEPLOYMENT_NAME }} --namespace ${{ env.GKE_NAMESPACE }}
           kubectl apply -f card-api-service.yaml --namespace ${{ env.GKE_NAMESPACE }}
           kubectl apply -f mongo-service.yaml --namespace ${{ env.GKE_NAMESPACE }}
