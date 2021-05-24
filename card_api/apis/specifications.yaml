@@ -273,6 +273,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Exception"
+  /games/{gameId}/shuffle:
+    get:
+      tags:
+        - "Games"
+      summary: "Get the list of undealt suit per game deck"
+      operationId: "card_api.apis.games.endpoints.shuffle"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully retrieved list of cards for player"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        404:
+          description: "The game doesn't exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
 components:
   schemas:
     Game:

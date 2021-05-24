@@ -128,3 +128,7 @@ def count_undealt_cards(**kwargs):
         return {"message": str(e)}, 404
     else:
         return ordered_cards_list
+
+
+def shuffle():
+    pass
