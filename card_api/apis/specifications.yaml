@@ -218,7 +218,7 @@ paths:
             type: string
       responses:
         200:
-          description: "Successfully retrieved list of cards for player"
+          description: "Successfully retrieved list of players for the game"
           content:
             application/json:
               schema:
@@ -243,7 +243,7 @@ paths:
             type: string
       responses:
         200:
-          description: "Successfully retrieved list of cards for player"
+          description: "Successfully retrieved list of undealt cards per game"
           content:
             application/json:
               schema:
@@ -262,7 +262,7 @@ paths:
             type: string
       responses:
         200:
-          description: "Successfully retrieved list of cards for player"
+          description: "Successfully retrieved card count per suit and face"
           content:
             application/json:
               schema:
@@ -274,7 +274,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Exception"
   /games/{gameId}/shuffle:
-    get:
+    patch:
       tags:
         - "Games"
       summary: "Shuffle the game deck"
@@ -287,7 +287,7 @@ paths:
             type: string
       responses:
         200:
-          description: "Successfully retrieved list of cards for player"
+          description: "Successfully the game deck"
           content:
             application/json:
               schema:
