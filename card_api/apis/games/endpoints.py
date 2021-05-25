@@ -130,5 +130,11 @@ def count_undealt_cards(**kwargs):
         return ordered_cards_list
 
 
-def shuffle():
-    pass
+def shuffle(**kwargs):
+    game_id = kwargs["gameId"]
+    try:
+        game = _a_game.shuffle_game_deck(game_id=game_id)
+    except _exc.GameDoesNotExist as e:
+        return {"message": str(e)}, 404
+    else:
+        return game

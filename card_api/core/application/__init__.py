@@ -7,5 +7,6 @@ from .delete_game import delete_game  # noqa F401
 from .get_card_count import *  # noqa F401
 from .get_list_of_cards import get_list_of_cards  # noqa F401
 from .get_list_of_players import get_list_of_players  # noqa F401
+from .shuffle_game_deck import shuffle_game_deck  # noqa F401
 from .get_undealt_suits import get_undealt_suits  # noqa F401
 from .interfaces import *  # noqa F401
