@@ -252,7 +252,7 @@ paths:
     get:
       tags:
         - "Games"
-      summary: "Get the list of undealt suit per game deck"
+      summary: "Count the undealt cards per suit and per face"
       operationId: "card_api.apis.games.endpoints.count_undealt_cards"
       parameters:
         - in: path
@@ -266,7 +266,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Undealt"
+                $ref: "#/components/schemas/cardCount"
+        404:
+          description: "The game doesn't exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Exception"
+  /games/{gameId}/shuffle:
+    get:
+      tags:
+        - "Games"
+      summary: "Shuffle the game deck"
+      operationId: "card_api.apis.games.endpoints.shuffle"
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successfully retrieved list of cards for player"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
         404:
           description: "The game doesn't exist"
           content:
@@ -290,15 +315,25 @@ components:
         deckId:
           type: string
           description: Deck unique ID
-        Cards:
+        cards:
           type: array
+          items:
+            type: string
           description: Cards belonging to Deck
     Hand:
       type: array
+      items:
+        type: string
     Players:
       type: array
+      items:
+        type: string
     Undealt:
       type: object
+    cardCount:
+      type: array
+      items:
+        type: string
     Exception:
       type: object
       properties:

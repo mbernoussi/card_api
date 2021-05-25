@@ -1,8 +1,5 @@
 import uuid as _uuid
 
-from antidote.helpers.register import register
-import card_api.core.domain.games.deck as _deck
-
 
 class Game:
     def __init__(self, game_id: str, decks: list, players: list):

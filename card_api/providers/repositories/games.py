@@ -1,5 +1,6 @@
 import antidote as _antidote
 import mongoengine as _me
+
 import card_api.core.application as _a_game
 import card_api.core.domain.games.game as _d_game
 
@@ -22,6 +23,8 @@ class GamesRepository(_a_game.GamesRepository):
     def find_by_id(self, game_id: str) -> _d_game.Game:
         repo_game = Game.objects.get(_id=str(game_id))
         game = _d_game.Game(
-            game_id=repo_game._id, decks=repo_game.decks, players=repo_game.players
+            game_id=repo_game._id,
+            decks=repo_game.decks,
+            players=repo_game.players,
         )
         return game

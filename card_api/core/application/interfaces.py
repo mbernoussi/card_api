@@ -1,8 +1,7 @@
 import abc as _abc
-import typing as _t
 
-import card_api.core.domain.games.game as _d_game
 import card_api.core.domain.games.deck as _d_deck
+import card_api.core.domain.games.game as _d_game
 import card_api.core.domain.games.player as _d_player
 
 
@@ -43,4 +42,8 @@ class PlayersRepository(_abc.ABC):
 class DeckCalculator(_abc.ABC):
     @_abc.abstractmethod
     def calculate_undealt(self, game: _d_game.Game):
+        raise NotImplementedError
+
+    @_abc.abstractmethod
+    def calculate_card_count(self, game: _d_game.Game) -> list:
         raise NotImplementedError

@@ -1,9 +1,9 @@
-import os as _os
-from uuid import uuid4
-import connexion as _connexion
-import flask as _flask
-import connexion.apps.flask_app as _flask_app
 import enum as _enum
+from uuid import uuid4
+
+import connexion as _connexion
+import connexion.apps.flask_app as _flask_app
+import flask as _flask
 
 
 class CardGameEncoder(_flask_app.FlaskJSONEncoder):
