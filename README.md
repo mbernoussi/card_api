@@ -4,26 +4,14 @@
 
 Python 3.7.9 installed
 
-### DB for testing:
-
-Another container running mongodb and set up with the below commands:
-
-```bash
-
-mongo admin -u root -p
-MongoDB shell version v4.4.6
-Enter password: 
-db.createUser({user: "mongo_user", pwd: "mongo_password", roles: [ { role: "dbOwner", db: "mongo_db"}]})
-
-```
 ### .env 
 
 The file .env must be filled with the environment variables
 
-## Start the container
+## Start the services:
 
-+ docker-compose -p cardapi up with the mongo container up
-To start it on a dev mode, you can use ```flask run -h 0.0.0.0 -p 8080```
+`./start.sh`
+This scripts will prompt for two values, the mongo root password to initiate mongo and the mongo database password that will be used by the mongo user to store/retrieve the API data. This script will use the docker-compose file to build and run the API container and the mongo container.
 
 ## Structure of the API:
 
